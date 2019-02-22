@@ -1,14 +1,34 @@
 import React, { Component } from "react";
 
 class Register extends Component {
-  constructor(){
+  constructor() {
     super();
-    this.state={
-      name:'',
-      email:'',
-      password:'',
-      password2:''
-    }
+    this.state = {
+      name: "",
+      email: "",
+      password: "",
+      password2: "",
+      error: {}
+    };
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+    // this.setState({ [e.target.email]: e.target.value });
+    // this.setState({ [e.target.password]: e.target.value });
+    // this.setState({ [e.target.password2]: e.target.value });
+  }
+  onSubmit(e) {
+    e.preventDefault();
+
+    const newUser = {
+      name: this.state.name,
+      email: this.state.email,
+      password: this.state.password,
+      password2: this.state.password2
+    };
+    console.log(newUser);
   }
   render() {
     return (
@@ -20,14 +40,15 @@ class Register extends Component {
               <p className="lead text-center">
                 Create your DevConnector account
               </p>
-              <form action="create-profile.html">
+              <form onSubmit={this.onSubmit}>
                 <div className="form-group">
                   <input
                     type="text"
                     className="form-control form-control-lg"
                     placeholder="Name"
                     name="name"
-                    value={this.state.name} 
+                    value={this.state.name}
+                    onChange={this.onChange}
                   />
                 </div>
                 <div className="form-group">
@@ -35,9 +56,11 @@ class Register extends Component {
                     type="email"
                     className="form-control form-control-lg"
                     placeholder="Email Address"
-                    value={this.state.email}
+                    name="email"
+                    value={this.state.email}             
+                    onChange={this.onChange}
                   />
-                  <small classNameName="form-text text-muted">
+                  <small className="form-text text-muted">
                     This site uses Gravatar so if you want a profile image, use
                     a Gravatar email
                   </small>
@@ -49,6 +72,7 @@ class Register extends Component {
                     placeholder="Password"
                     name="password"
                     value={this.state.password}
+                    onChange={this.onChange}
                   />
                 </div>
                 <div className="form-group">
@@ -56,7 +80,9 @@ class Register extends Component {
                     type="password"
                     className="form-control form-control-lg"
                     placeholder="Confirm Password"
+                    name="password2"
                     value={this.state.password2}
+                    onChange={this.onChange}
                   />
                 </div>
                 <input type="submit" className="btn btn-info btn-block mt-4" />
