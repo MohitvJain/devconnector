@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class Login extends Component {
   constructor() {
@@ -13,9 +14,6 @@ class Login extends Component {
   }
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
-    // this.setState({ [e.target.email]: e.target.value });
-    // this.setState({ [e.target.password]: e.target.value });
-    // this.setState({ [e.target.password2]: e.target.value });
   }
   onSubmit(e) {
     e.preventDefault();
@@ -57,7 +55,12 @@ class Login extends Component {
                     onChange={this.onChange}
                   />
                 </div>
-                <input type="submit" className="btn btn-info btn-block mt-4" />
+                <Link
+                  input
+                  type="submit"
+                  className="btn btn-info btn-block mt-4"
+                  to="/Devlopers"
+                />
               </form>
             </div>
           </div>
@@ -66,5 +69,4 @@ class Login extends Component {
     );
   }
 }
-https://coursehunters.net/course/mern-stack-front-to-back-full-stack-react-redux-node-js
 export default Login;

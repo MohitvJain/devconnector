@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { registerUser } from "../../actions/authActions";
 
 class Register extends Component {
   constructor() {
@@ -15,9 +17,6 @@ class Register extends Component {
   }
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
-    // this.setState({ [e.target.email]: e.target.value });
-    // this.setState({ [e.target.password]: e.target.value });
-    // this.setState({ [e.target.password2]: e.target.value });
   }
   onSubmit(e) {
     e.preventDefault();
@@ -28,11 +27,15 @@ class Register extends Component {
       password: this.state.password,
       password2: this.state.password2
     };
-    console.log(newUser);
+    this.props.registerUser(newUser);
   }
   render() {
+    // const {error} = this.state;
+    const { user } = this.props.auth;
     return (
       <div className="register">
+        {user ? user.name : null}
+        {user ? user.email : null}
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
@@ -57,7 +60,7 @@ class Register extends Component {
                     className="form-control form-control-lg"
                     placeholder="Email Address"
                     name="email"
-                    value={this.state.email}             
+                    value={this.state.email}
                     onChange={this.onChange}
                   />
                   <small className="form-text text-muted">
@@ -94,4 +97,12 @@ class Register extends Component {
     );
   }
 }
-export default Register;
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  { registerUser }
+)(Register);
