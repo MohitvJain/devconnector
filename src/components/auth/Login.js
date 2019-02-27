@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 class Login extends Component {
   constructor() {
@@ -55,12 +55,7 @@ class Login extends Component {
                     onChange={this.onChange}
                   />
                 </div>
-                <Link
-                  input
-                  type="submit"
-                  className="btn btn-info btn-block mt-4"
-                  to="/Devlopers"
-                />
+                <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>
             </div>
           </div>

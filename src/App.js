@@ -5,7 +5,6 @@ import Footer from "./components/layout/Footer";
 import Landing from "./components/layout/Landing";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
-import Devlopers from "./components/auth/Devloper";
 import store from "./store";
 import { Provider } from "react-redux";
 
@@ -22,7 +21,6 @@ class App extends Component {
             <div className="container">
               <Route exact path="/Login" component={Login} />
               <Route exact path="/Register" component={Register} />
-              <Route exact path="/Devlopers" component={Devlopers} />
             </div>
             <Footer />
           </div>
